@@ -1,0 +1,7 @@
+npm install
+npm install vue vue-router axios --save
+crear base de datos en phpmyadmin
+configura .env
+arregla webpack.mix --->   .version();
+php artisan make:model Models\Post\Post -m
+llenar las migrqaciones desde users
