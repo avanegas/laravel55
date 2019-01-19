@@ -83,6 +83,7 @@ li:hover {
 li:hover > ul {
 	display: block;
 }
+/*
 .menu {
     background: #333;
     display: flex;
@@ -102,6 +103,73 @@ a {
     text-decoration: none;
     color: #616161;
 }
+*/
+.menu {
+    background: #343a40;
+    margin-bottom: 10px;
+    }
+    .menu ul {
+        display:flex;
+        justify-content:space-between;    
+        height: 60px;
+        }
+        .menu li{
+            position: relative;
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+           /* border-right: 2px solid #fff;*/
+
+            }
+            .menu a {
+                position: relative;
+                display:block;
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration:none;
+                text-align:center;
+                font-size:14px;
+            }
+            .menu li.active:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                height:3px;
+                width: 80%;
+                background: #02648e;  
+            }
+            .menu li:hover .submenu {
+                display: block;
+            }
+
+        .submenu {
+            display:none;
+            position:absolute;
+            left:0;
+            top:41px;
+            width:100px;
+            background:#343a40;
+        }
+
+            .submenu a {
+                display:flex;
+                justify-content:flex-end;
+                align-items: center;
+                height:40px;
+                padding-right: 10px;
+                border-bottom:1px solid #fff;
+                font-size: 14px;
+            }
+            .submenu .active:after {
+                content:"";
+                position:absolute;
+                bottom:0;
+                right: 0;
+                height: 100%;
+                width: 3px;
+                background: #009cde;
+            }
+
 .container { margin: 0px auto;}
 .clearfix { overflow: auto;}
 .router-link-active { color: red;}

@@ -166,12 +166,14 @@ class PrecioController extends Controller
         //    ->findOrFail($id, [
         //        'id', 'grupo_precio_id', 'name', 'unidad', 'detalle', 'directo', 'indirecto'
         //    ]);
-                $form = Precio::with([ 'grupo_precio', 'equipos', 'obreros', 'materials', 'transportes'])
+        $form = Precio::with([ 'grupo_precio', 'equipos', 'obreros', 'materials', 'transportes'])
             ->findOrFail($id);
+        $grupo_precios = GrupoPrecio::get();
             
         return response()
             ->json([
-                'form' => $form
+                'form' => $form,
+                'grupo_precios' => $grupo_precios
             ]);
     }
 

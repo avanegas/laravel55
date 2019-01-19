@@ -1768,34 +1768,115 @@ li:hover > ul {
   display: block;
 }
 
+/*
 .menu {
-  background: #333;
+    background: #333;
+    display: flex;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+    border: 2px solid #fff;
+}
+.item { margin: 10px;}
+.item:nth-child(4) { margin-right: auto;}
+.item a{
+    color:#fff;
+    text-decoration: none;
+    display: block;
+    padding: .5em 1.5em;
+    white-space: nowrap;
+}
+a {
+    text-decoration: none;
+    color: #616161;
+}
+*/
+
+.menu {
+  background: #343a40;
+  margin-bottom: 10px;
+}
+
+.menu ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-  border: 2px solid #fff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 60px;
 }
 
-.item {
-  margin: 10px;
+.menu li {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /* border-right: 2px solid #fff;*/
 }
 
-.item:nth-child(4) {
-  margin-right: auto;
-}
-
-.item a {
-  color: #fff;
-  text-decoration: none;
+.menu a {
+  position: relative;
   display: block;
-  padding: .5em 1.5em;
-  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
 }
 
-a {
-  text-decoration: none;
-  color: #616161;
+.menu li.active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 80%;
+  background: #02648e;
+}
+
+.menu li:hover .submenu {
+  display: block;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 41px;
+  width: 100px;
+  background: #343a40;
+}
+
+.submenu a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  padding-right: 10px;
+  border-bottom: 1px solid #fff;
+  font-size: 14px;
+}
+
+.submenu .active:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 3px;
+  background: #009cde;
 }
 
 .container {

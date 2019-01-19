@@ -34,6 +34,7 @@ Route::resource('zonas', 'ZonaController');
 
 Route::resource('categories', 'CategoryController');
 Route::resource('posts', 'PostController');
+
 Route::resource('grupo_precios', 'GrupoPrecioController');
 Route::resource('precios', 'PrecioController');
 Route::resource('proyectos', 'ProyectoController');

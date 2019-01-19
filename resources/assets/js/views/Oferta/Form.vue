@@ -56,6 +56,7 @@
 		data() {
 			return {
 				categories:[],
+
 				form: {},
 				error: {},
 				isProcessing: false,

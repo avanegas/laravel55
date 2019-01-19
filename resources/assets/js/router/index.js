@@ -29,6 +29,10 @@ import ProyectoIndex from '../views/Proyecto/Index.vue'
 import ProyectoShow from '../views/Proyecto/Show.vue'
 import ProyectoForm from '../views/Proyecto/Form.vue'
 
+
+import OfertaIndex from '../views/Oferta/Index.vue'
+import OfertaForm from '../views/Oferta/Form.vue'
+
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -69,6 +73,11 @@ const router = new VueRouter({
         { path: '/proyectos/create', component: ProyectoForm},
         { path: '/proyectos/:id/edit', component: ProyectoForm, meta: { mode: 'edit' }},
         { path: '/proyectos/:id', component: ProyectoShow},
+
+
+        { path: '/ofertas', component: OfertaIndex},
+        { path: '/ofertas/create', component: OfertaForm, meta: { mode: 'create' }},
+        { path: '/ofertas/:id/edit', component: OfertaForm, meta: { mode: 'edit' }},
 
         { path: '/login', component: Login },
         { path: '/register', component: Register },

@@ -30,12 +30,12 @@ class Post extends Model
     public static function form()
     {
         return [
-            'category_id'=> '',
-            'user_id' => '',
-            'name' => '',
-            'content' => '',
-            'tags' => '',
-            'image' => ''
+            'category_id'   => '',
+            'user_id'       => '',
+            'name'          => '',
+            'content'       => '',
+            'tags'          => '',
+            'image'         => ''
         ];
     }
 }

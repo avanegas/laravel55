@@ -4,22 +4,36 @@
 			<h2>Menu</h2>
 			<a href="#" class="stuts">INFOASISTENCIA <span>Costos</span></a>
 		</header>
-		<nav>
-			<ul class="menu">
-				<li class="item"><router-link to="/" class="active brand">- Apuntes -</router-link></li>
-				<li class="item"><a class="hsubs" href="#">Datos</a>
-					<ul class="subs">
-						<li class="item"><router-link to="/equipos" v-if="auth">Equipos</router-link></li>
-						<li class="item"><router-link to="/materials" v-if="auth">Materiales</router-link></li>
-						<li class="item"><router-link to="/obreros" v-if="auth">Obreros</router-link></li>
-						<li class="item"><router-link to="/transportes" v-if="auth">Transporte</router-link></li>
-					</ul>
+		<nav class="menu">
+			<ul>
+				<li><router-link to="/" class="active brand">- Apuntes -</router-link></li>
+				<li>
+					<a href="#">Datos</a>
+					<nav class="submenu">
+						<li><router-link to="/equipos">Equipos</router-link></li>
+						<li><router-link to="/materials">Materiales</router-link></li>
+						<li><router-link to="/obreros">Obreros</router-link></li>
+						<li><router-link to="/transportes">Transportes</router-link></li>
+					</nav>
 				</li>
-				<li class="item"><router-link to="/precios" v-if="auth">Precios</router-link></li>
-				<li class="item"><router-link to="/proyectos"  v-if="auth">Proyectos</router-link></li>
-				<li class="item"><router-link to="/login" v-if="guest">LOGIN</router-link></li>			
-				<li class="item"><router-link to="/register" v-if="guest">REGISTER</router-link></li>
-				<li class="item"><a @click.stop="logout" v-if="auth">LOGOUT</a></li>
+				<li><router-link to="/precios">Precios</router-link></li>
+				<li><router-link to="/proyectos">Proyectos</router-link></li>
+				<li><router-link to="/ofertas">Ofertas</router-link></li>
+
+				<li><router-link :to="`/posts/${authState.user_id}`"  v-if="auth">Entradas</router-link></li>
+                <li><router-link to="/categories"  v-if="auth">Categorias</router-link></li>
+                <li><router-link to="/tags"  v-if="auth">Etiquetas</router-link></li>
+
+				<li><router-link to="/login" v-if="guest">LOGIN</router-link></li>			
+				<li><router-link to="/register" v-if="guest">REGISTER</router-link></li>
+
+                <li>
+                    <a href="#" v-if="auth">{{ authState.user_id }} <span class="caret"> Admin</span></a>
+                    <nav class="submenu">
+                        <router-link to="/users" v-if="auth" >Administrar</router-link>
+                        <a href="#" @click.stop="logout" v-if="auth">LOGOUT</a>
+                    </nav>
+                </li>
 			</ul>
 		</nav>
 		<div class="flash flash__error" v-if="flash.error">

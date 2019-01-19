@@ -64,7 +64,7 @@
                             :class="[error[`equipos.${index}.rendimiento`] ? 'error__bg' : '']"></td>
                         <td class="right">{{(equipo.cantidad * equipo.tarifa*equipo.rendimiento).toFixed(5)}}</td>
                     </tr>
-                    <tr v-for="n in 5-numEquipos">
+                    <tr v-for="n in (5-form.equipos.length)" v-if="(5-form.equipos.length) > 0">
                         <td @click="mostrar(elegido='equipo')"><input type="text" class="form__control" value="Ingrese Equipo"></td>
                         <td><input type="text" class="form__control" ></td>
                         <td class="right"><input type="text" class="form__control" ></td>
@@ -104,7 +104,7 @@
                                                  :class="[error[`obreros.${index}.rendimiento`] ? 'error__bg' : '']"></td>
                         <td class="right">{{(obrero.cantidad * obrero.jornalhora*obrero.rendimiento).toFixed(5)}}</td>
                     </tr>
-                    <tr v-for="n in 7-numObreros">
+                    <tr v-for="n in (7-form.obreros.length)" v-if="(7-form.obreros.length) > 0">
                         <td @click="mostrar(elegido='obrero')">Ingrese Obrero</td>
                         <td></td>
                         <td class="right"></td>
@@ -142,7 +142,7 @@
                                    :class="[error[`materials.${index}.precio`] ? 'error__bg' : '']"></td>
                         <td class="right">{{(material.cantidad * material.precio).toFixed(5)}}</td>
                     </tr>
-                    <tr v-for="n in 7-numMaterials">
+                    <tr v-for="n in (7-form.materials.length)" v-if="(7-form.materials.length) > 0">
                         <td>Ingrese Material</td>
                         <td colspan="2"></td>
                         <td class="right"></td>
@@ -179,7 +179,7 @@
                                                  :class="[error[`transportes.${index}.tarifa`] ? 'error__bg' : '']"></td>
                         <td class="right">{{(transporte.cantidad * transporte.tarifa).toFixed(5)}}</td>
                     </tr>
-                    <tr v-for="n in 4-numTransportes">
+                    <tr v-for="numero in (4-form.transportes.length)" v-if="(4-form.transportes.length) > 0">
                         <td>Ingrese Transporte</td>
                         <td colspan="2"></td>
                         <td class="right"></td>
@@ -270,11 +270,8 @@
             }
             get(this.initializeURL)
                 .then((res) => {
-                    Vue.set(this.$data, 'form', res.data.form)
-                }),
-            get(`/api/grupo_precios`)
-                .then((res) => {
-                    this.grupo_precios = res.data.grupo_precios
+                    Vue.set(this.$data, 'form', res.data.form);
+                    Vue.set(this.$data, 'grupo_precios', res.data.grupo_precios);
                 })
         },
         computed: {
@@ -283,37 +280,21 @@
                     return carry + (parseFloat(equipo.cantidad) * parseFloat(equipo.tarifa)*parseFloat(equipo.rendimiento));
                 }, 0);
             },
-            numEquipos: function(){
-                return this.form.equipos.length
-            },
-
             subTotalObreros: function() {
                 return this.form.obreros.reduce(function(carry, obrero) {
                     return carry + (parseFloat(obrero.cantidad) * parseFloat(obrero.jornalhora)*parseFloat(obrero.rendimiento));
                 }, 0);
             },
-            numObreros: function(){
-                return this.form.obreros.length
-            },
-
             subTotalMaterials: function() {
                 return this.form.materials.reduce(function(carry, material) {
                     return carry + (parseFloat(material.cantidad) * parseFloat(material.precio));
                 }, 0);
             },
-            numMaterials: function(){
-                return this.form.materials.length
-            },
-
             subTotalTransportes: function() {
                 return this.form.transportes.reduce(function(carry, transporte) {
                     return carry + (parseFloat(transporte.cantidad) * parseFloat(transporte.tarifa));
                 }, 0);
             },
-            numTransportes: function(){
-                return this.form.transportes.length
-            },
-
             directo: function(){
                 return  this.form.directo = parseFloat(this.subTotalEquipos) + parseFloat(this.subTotalObreros) + parseFloat(this.subTotalMaterials) + parseFloat(this.subTotalTransportes);
             },

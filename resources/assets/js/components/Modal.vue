@@ -30,7 +30,9 @@
                                 <lista-search
                                         :data="gridData"
                                         :columns="gridColumns"
-                                        :filter-key="searchQuery">
+                                        :filter-key="searchQuery"
+                                        :lista="lista"
+                                        :isAutorized="isAutorized">
                                 </lista-search>
                             </slot>
                         </div>
@@ -56,36 +58,19 @@
         components: {
             ListaSearch
         },
-        mounted() {
-            var dataURL = '/api/' + this.elegido + 's';
-            var list = this.elegido + 's';
-            switch(list) {
-                case 'equipos':
-                    console.log('equipos');
-                    break;
-                case 'materials':
-                    console.log('materials');
-                    break;
-                case 'obreros':
-                    console.log('obreros');
-                    break;
-                case 'transportes':
-                    console.log('transportes');
-                    break;
-            }
-        },
-
         data() {
             return {
 
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['name', 'tarifa']
+                gridColumns:['name', 'tarifa'],
+                lista:`${this.elegido}s`,
+                isAutorized: false
             }
         },
         created() {
-            get(`/api/equipos`)
+            get(`/api/${this.elegido}s`)
                 .then((res) => {
                     this.gridData = res.data.equipos
                 })
